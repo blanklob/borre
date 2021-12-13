@@ -3,6 +3,7 @@ import constants
 
 
 def roll_dice_set(how_many_dice):
+    constants.THROW_DICE_COUNTER = 0
     dice_value_list = [0] * constants.NB_DICE_SIDE
     for n in range(how_many_dice):
         dice_value = random.randint(1, constants.NB_DICE_SIDE)
@@ -32,11 +33,24 @@ def analyse_standard_score(dice_value_list, bonus_score):
     for scoring_value, scoring_multiplier in zip(constants.LIST_SCORING_DICE_VALUE, constants.LIST_SCORING_MULTIPLIER):
         standard_score += dice_value_list[scoring_value - 1] * scoring_multiplier
         dice_value_list[scoring_value - 1] = 0
-    return analyse_score(standard_score, bonus_score)
+    return analyse_score(dice_value_list, standard_score, bonus_score)
 
-def analyse_score(standard_score, bonus_score):
-    print(standard_score)
-    print(bonus_score)
+def analyse_score(dice_value_list, standard_score, bonus_score):
+    constants.STACK_BONUS += (bonus_score + standard_score)
+    print(constants.STACK_BONUS)
+    print("----")
+    print(dice_value_list)
+    print("----")
+    print("----------------------------------")
+    for n in dice_value_list:
+        if n != 0 and (bonus_score + standard_score) > 0:
+            constants.THROW_DICE_COUNTER += 1
+    if constants.THROW_DICE_COUNTER > 0:
+        roll_dice_set(constants.THROW_DICE_COUNTER)
 
 
-roll_dice_set(6)
+
+
+
+
+roll_dice_set(constants.THROW_DICE_COUNTER)

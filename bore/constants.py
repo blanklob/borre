@@ -21,3 +21,7 @@ BONUS_VALUE_FOR_ACE_BONUS = 1000
 
 # Standard multiplier for multiple dices value bonus
 BONUS_VALUE_FOR_NORMAL_BONUS = 100
+
+THROW_DICE_COUNTER = 6
+
+STACK_BONUS = 0
