@@ -1,5 +1,5 @@
 ## Bore
-- This a dice game made using Python.
+This is a dead simple Dice game made using Python. (School project 📖)
 
 ## Usage
 
@@ -23,12 +23,6 @@ Earlier versions may still work, but we encourage people building new applicatio
 to upgrade to the current stable.
 
 ## Getting help
-
-If you have a question about the library, or are having difficulty using it,
-chat with the community in [GitHub Discussions](https://github.com/younessidbakkasse/bore/discussions)..
-
-
-## Authors
 
 If you have a question about the library, or are having difficulty using it,
 chat with the community in [GitHub Discussions](https://github.com/younessidbakkasse/bore/discussions)..
