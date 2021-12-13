@@ -4,11 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+fastapi = "*"
 
 [dev-packages]
 
 [scripts]
 game = "python bore/main.py"
+test = "python bore/tests/test_dice.py"
 
 [requires]
 python_version = "3.9"

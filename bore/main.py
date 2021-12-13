@@ -1,9 +1,9 @@
-from dice import Game
+from dice import Game, Set
 
 
 if __name__ == "__main__":
-  game = Game()
-  game.run()
+    game = Game()
+    game.run()
 
-  print(f'The game score is { game.score } points.')
+    print(f'The game score is { game.score } points.')
 

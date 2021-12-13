@@ -12,3 +12,13 @@ charset = utf-8
 # Override rules for markdown
 [*.md]
 trim_trailing_whitespace = false
+
+# Override rules for markdown
+[*.md]
+trim_trailing_whitespace = false
+
+# 4 space indentation
+[*.py]
+indent_size = 4
+
+
