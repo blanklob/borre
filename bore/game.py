@@ -67,17 +67,16 @@ class Party:
         while self.is_running:
             self.set = Set(self.number_of_dices_left)
             self.set.roll()
+
             print(self.set.occurences)
 
             self.set.score += self.calculate_standard_score()
             self.set.score += self.calculate_bonus_score()
 
-            print(self.set.occurences)
-
             self.score += self.set.score
             self.number_of_dices_left = sum(self.set.occurences)
 
-            self.validate_playing()
+            self.validate()
 
         self.player.score += self.score
 
@@ -90,7 +89,7 @@ class Party:
         for dice_value, score_multiplier in constants.LIST_SCORING_MERGED:
             score += self.set.occurences[dice_value - 1] * score_multiplier
 
-            # Reset items who are eligible for bonus score
+            # Remove dices who were eligible to standard score
             self.set.occurences[dice_value - 1] = 0
 
         return score
@@ -116,7 +115,7 @@ class Party:
         return score
 
 
-    def validate_playing(self) -> None:
+    def validate(self) -> None:
         """
         Validate if the player wishes to continue the party and roll another set,
         or if has no more scoring Dices left 
@@ -157,8 +156,6 @@ class Game:
         for _ in range(self.num_of_players):
             self.players.append(Player(username=str(_)))
 
-        self.party = Party(self.players[0])
-
 
     def score(self) -> int:
         """
@@ -172,6 +169,15 @@ class Game:
         """
         Lunch the main game loop
         """
-        print('Game lunching..')
-        self.party.run()
+        while self.is_running:
+            for player in self.players:
+                print(f'Player {player.username} will play...')
+                party = Party(player)
+                party.run()
+
+                print(party)
+                if player.score >= constants.DEFAULT_TARGET_SCORE:
+                    self.is_running = False
+                    print(f'The player {player.username} won Bore 🎉.')
+                    break
 
