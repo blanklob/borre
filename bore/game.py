@@ -1,5 +1,4 @@
 import random
-from bore.dice import Player
 import constants
 
 

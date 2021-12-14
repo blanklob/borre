@@ -27,6 +27,16 @@ class Set:
         for _ in range(self.number_of_dices):
             self.dices.append(Dice())
 
+    def __repr__(self) -> str:
+        # todo: Use a loop
+        return f"""
+            *1: {self.occurences[0]}
+            *2: {self.occurences[1]}
+            *3: {self.occurences[2]}
+            *4: {self.occurences[3]}
+            *5: {self.occurences[4]}
+            *6: {self.occurences[5]}
+        """
 
     def roll(self) -> list:
         """
@@ -57,21 +67,37 @@ class Player:
 
 
 class Party:
-    def __init__(self, player: Player) -> None:
+    def __init__(
+        self,
+        player: Player
+    ) -> None:
         self.set = Set()
         self.player = player
         self.score = 0
+        self.number_of_dices_left = constants.DEFAULT_DICES_NB
+        self.is_running = True
 
 
     def __repr__(self) -> str:
-        return f'Player {self.player} is playing and has stacked a score of {self.score} points'
+        return f"""
+        The player {self.player.username} is playing and has stacked a score of {self.score} points
+        and there is {self.number_of_dices_left} dices left.
+        """
 
 
     def run(self) -> None:
         """
         Rolls a set of dice
         """
-        self.set.roll()
+        while self.is_running:
+            self.set.roll()
+
+            self.calculate_standard_score()
+            self.calculate_bonus_score()
+            self.player.score = self.score
+
+            self.validate_playing()
+            print(self)
 
 
     def calculate_standard_score(self) -> int:
@@ -105,19 +131,39 @@ class Party:
 
         return self.score
 
+    def validate_playing(self):
+        """
+        Validate if the player wants to continue the game if he lost
+        """
+        self.number_of_dices_left = sum(self.set.occurences)
+        if(not self.number_of_dices_left):
+            self.is_running = False
+
+
 
 
 class Game:
-    def __init__(self, num_of_players: list) -> None:
-        self.party = Party()
+    def __init__(
+        self,
+        num_of_players: list = constants.DEFAULT_PLAYERS_NUMBER,
+    ) -> None:
         self.winner = None
         self.num_of_players = num_of_players
+        self.is_running = True
+        self.players = []
+
+        for _ in range(self.num_of_players):
+            self.players.append(Player(username=str(_)))
+
+        self.party = Party(self.players[0])
 
 
     def score(self) -> int:
-        pass
+        for player in self.players:
+            print(player)
 
 
     def lunch(self) -> None:
-        print(self.party)
+        print('Game lunching..')
         self.party.run()
+

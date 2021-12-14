@@ -10,8 +10,9 @@ uvicorn = {extras = ["standard"], version = "*"}
 [dev-packages]
 
 [scripts]
-game = "python bore/game.py"
+game = "python bore/main.py"
 test = "python bore/tests/test_dice.py"
+serve = "uvicorn bore.api:app --reload"
 
 [requires]
 python_version = "3.9"
