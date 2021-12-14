@@ -74,44 +74,34 @@ class Party:
         self.set.roll()
 
 
-    def get_standard_score(self) -> int:
+    def calculate_standard_score(self) -> int:
         """
         Calculate and returns the standard party score
         """
-        result = (
-            self.set.occurences[constants.LIST_SCORING_DICE_VALUE[0]-1] * constants.LIST_SCORING_MULTIPLIER[0]
-            + self.set.occurences[constants.LIST_SCORING_DICE_VALUE[1]-1] * constants.LIST_SCORING_MULTIPLIER[1]
-        )
+        for dice_value, score_multiplier in constants.LIST_SCORING_MERGED:
+            self.score += self.set.occurences[dice_value - 1] * score_multiplier
 
-        return result
+            # Reset items who are eligible for bonus score
+            self.set.occurences[dice_value - 1] = 0
+
+        return self.score
 
 
-    def get_bonus_score(self) -> int:
+    def calculate_bonus_score(self) -> int:
         """
-        Calculate and returns bonus score if there is any combos
+        Calculate and returns the global score if there is any combos
         """
-        score = 0
         for index, occurrence in enumerate(self.set.occurences):
             num_of_bonus = occurrence // constants.TRIGGER_OCCURRENCE_FOR_BONUS
 
-        if num_of_bonus:
-            if not index:
-                bonus_multiplier = constants.BONUS_VALUE_FOR_ACE_BONUS
-            else:
-                bonus_multiplier = constants.BONUS_VALUE_FOR_NORMAL_BONUS
+            if num_of_bonus:
+                if not index:
+                    self.score += num_of_bonus * constants.BONUS_VALUE_FOR_ACE_BONUS * (index + 1)
+                else:
+                    self.score += num_of_bonus * constants.BONUS_VALUE_FOR_NORMAL_BONUS * (index + 1)
 
-            score += num_of_bonus * bonus_multiplier * (index + 1)
+            # Reset items who have bonus score
             self.set.occurences[index] %= constants.TRIGGER_OCCURRENCE_FOR_BONUS
-
-        return score
-
-
-    # score getter
-    def get_score(self) -> int:
-        """
-        Returns the global game score
-        """
-        self.score = self.standard_score() + self.bonus_score()
 
         return self.score
 

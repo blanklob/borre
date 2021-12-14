@@ -1,4 +1,5 @@
 import random
+from bore.dice import Player
 import constants
 
 
@@ -82,3 +83,6 @@ def analyse_score(dice_value_list, standard_score, bonus_score):
 
 
 roll_dice_set(constants.THROW_DICE_COUNTER)
+
+
+

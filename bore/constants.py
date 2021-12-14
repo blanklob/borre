@@ -13,6 +13,9 @@ LIST_SCORING_DICE_VALUE = [1, 5]
 # List of associated score for scoring dice values
 LIST_SCORING_MULTIPLIER = [100, 50]
 
+# List of associated score and their respective dice labels
+LIST_SCORING_MERGED = zip(LIST_SCORING_DICE_VALUE, LIST_SCORING_MULTIPLIER)
+
 # Trigger for multiple bonus
 TRIGGER_OCCURRENCE_FOR_BONUS = 3
 
