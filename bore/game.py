@@ -37,20 +37,30 @@ def analyse_standard_score(dice_value_list, bonus_score):
 
 def analyse_score(dice_value_list, standard_score, bonus_score):
     constants.STACK_BONUS += (bonus_score + standard_score)
+    calculus_dickus = 0
     print(constants.STACK_BONUS)
     print("----")
     print(dice_value_list)
     print("----")
     print("----------------------------------")
+
     for n in dice_value_list:
         if n != 0 and (bonus_score + standard_score) > 0:
-            constants.THROW_DICE_COUNTER += 1
+            constants.THROW_DICE_COUNTER += n
+        calculus_dickus += n
+
+    if calculus_dickus == 0 and (bonus_score + standard_score) > 0:
+        constants.THROW_DICE_COUNTER += 6
+        print("test")
+    elif bonus_score + standard_score == 0:
+        print("perdu sale chien")
+
     if constants.THROW_DICE_COUNTER > 0:
-        roll_dice_set(constants.THROW_DICE_COUNTER)
-
-
-
-
+        test = input("voulez vous rellancez ?")
+        if test == "yes":
+            roll_dice_set(constants.THROW_DICE_COUNTER)
+        else:
+            print("votre score pour ce tour est de " + str(constants.STACK_BONUS))
 
 
 roll_dice_set(constants.THROW_DICE_COUNTER)
