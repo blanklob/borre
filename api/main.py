@@ -1,15 +1,16 @@
 from typing import Optional
-
 from fastapi import FastAPI
 
 app = FastAPI()
 
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+async def read_main():
+    return {"msg": "Hello World"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+@app.websocket_route("/ws")
+async def websocket(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_json({"msg": "Hello WebSocket"})
+    await websocket.close()
