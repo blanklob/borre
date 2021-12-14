@@ -1,87 +1,158 @@
-import random
 import constants
+from player import Player
+from dice import Dice
 
 
-def roll_dice_set(how_many_dice):
-    constants.THROW_DICE_COUNTER = 0
-    # Nombre de faces
-    dice_value_list = [0] * constants.NB_DICE_SIDE
+class Set:
+    def __init__(
+        self,
+        number_of_dices: int = constants.DEFAULT_DICES_NB
+    ) -> None:
+        self.number_of_dices = number_of_dices
+        self.dices = []
+        self.occurences = [0] * constants.NB_DICE_SIDE
+        self.score = 0
 
-    for n in range(how_many_dice):
-        dice_value = random.randint(1, constants.NB_DICE_SIDE)
-        dice_value_list[dice_value - 1] += 1
+        for _ in range(self.number_of_dices):
+            self.dices.append(Dice())
 
-        # Valeur de des
-        print(dice_value)
 
-    print("----------------------------------")
-    print(dice_value_list)
-    print("----------------------------------")
+    def __repr__(self) -> str:
+        set_repr = ''
+        for dice_value in self.occurences:
+            set_repr += f'*{dice_value}: {self.occurences[dice_value -1]} /n'
+        return set_repr
 
-    # return dice_value_list
-    return analyse_bonus_score(dice_value_list)
 
-def analyse_bonus_score(dice_value_list):
-    bonus_score = 0
+    def roll(self) -> list:
+        """
+        Perform a roll of a number of dices
+        """
+        for dice in self.dices:
+            if type(dice) is Dice:
+                # the dice.roll() method returns a random integer
+                # between 1 and 6
+                result = dice.roll()
+                self.occurences[result-1] += 1
 
-    for index, dice_value in enumerate(dice_value_list):
-
-        nb_of_bonus = dice_value // constants.TRIGGER_OCCURRENCE_FOR_BONUS # 3
-
-        if nb_of_bonus > 0:
-            if index == 0:
-                bonus_mulitplier = constants.BONUS_VALUE_FOR_ACE_BONUS
-            else:
-                bonus_mulitplier = constants.BONUS_VALUE_FOR_NORMAL_BONUS
-
-            #  Example 3 fois 3 => bonus_score = 1 * 100 * ( 2 + 1 )
-            bonus_score += nb_of_bonus * bonus_mulitplier * (index + 1)
-
-            dice_value_list[index] %= constants.TRIGGER_OCCURRENCE_FOR_BONUS
-
-    return analyse_standard_score(dice_value_list, bonus_score)
+        return self.occurences
 
 
 
-def analyse_standard_score(dice_value_list, bonus_score):
-    standard_score = 0
-    for scoring_value, scoring_multiplier in zip(constants.LIST_SCORING_DICE_VALUE, constants.LIST_SCORING_MULTIPLIER):
-        standard_score += dice_value_list[scoring_value - 1] * scoring_multiplier
-        dice_value_list[scoring_value - 1] = 0
+class Party:
+    def __init__(
+        self,
+        player: Player
+    ) -> None:
+        self.player = player
+        self.score = 0
+        self.number_of_dices_left = constants.DEFAULT_DICES_NB
+        self.is_running = True
 
 
-    return analyse_score(dice_value_list, standard_score, bonus_score)
+    def __repr__(self) -> str:
+        return f"""
+        The player {self.player.username} is playing and has stacked a score of 
+        {self.score} points, there is {self.number_of_dices_left} dices left.
+        """
 
 
-def analyse_score(dice_value_list, standard_score, bonus_score):
-    party_score = standard_score + bonus_score
-    constants.STACK_BONUS += party_score
+    def run(self) -> None:
+        """
+        Rolls a set of dice
+        """
+        while self.is_running:
+            self.set = Set(self.number_of_dices_left)
+            self.set.roll()
 
-    calculus = 0
+            print(self.set.occurences)
 
-    for n in dice_value_list:
-        if n == 0:
-            continue
+            self.set.score += self.calculate_standard_score()
+            self.set.score += self.calculate_bonus_score()
 
-        if party_score > 0:
-            constants.THROW_DICE_COUNTER += n
+            self.score += self.set.score
+            self.validate_playing()
 
-        calculus += n
-
-    if calculus == 0 and party_score > 0:
-        constants.THROW_DICE_COUNTER += 6
-    elif party_score == 0:
-        print("Perdu sale chien")
-
-    if constants.THROW_DICE_COUNTER > 0:
-        test = input("Voulez-vous relancez ?")
-        if test == "yes":
-            roll_dice_set(constants.THROW_DICE_COUNTER)
-        else:
-            print("Votre score pour ce tour est de " + str(constants.STACK_BONUS))
+        self.player.score += self.score
 
 
-roll_dice_set(constants.THROW_DICE_COUNTER)
+    def calculate_standard_score(self) -> int:
+        """
+        Calculate and returns the standard party score
+        """
+        score = 0
+        for dice_value, score_multiplier in constants.LIST_SCORING_MERGED:
+            score += self.set.occurences[dice_value - 1] * score_multiplier
+
+            # Reset items who are eligible for bonus score
+            self.set.occurences[dice_value - 1] = 0
+
+        return score
 
 
+    def calculate_bonus_score(self) -> int:
+        """
+        Calculate and returns the global score if there is any combos
+        """
+        score = 0
+        for index, occurrence in enumerate(self.set.occurences):
+            num_of_bonus = occurrence // constants.TRIGGER_OCCURRENCE_FOR_BONUS
+
+            if num_of_bonus:
+                if not index:
+                    score += num_of_bonus * constants.BONUS_VALUE_FOR_ACE_BONUS * (index + 1)
+                else:
+                    score += num_of_bonus * constants.BONUS_VALUE_FOR_NORMAL_BONUS * (index + 1)
+
+            # Reset items who have bonus score
+            self.set.occurences[index] %= constants.TRIGGER_OCCURRENCE_FOR_BONUS
+ 
+        return score
+
+
+    def validate_playing(self):
+        """
+        Validate if the player wishes to continue the party and roll another set,
+        or if has no more scoring Dices left 
+        """
+        self.number_of_dices_left = sum(self.set.occurences)
+
+        if(self.set.score == 0):
+            self.score = 0
+            self.is_running = False
+            
+
+
+
+class Game:
+    def __init__(
+        self,
+        num_of_players: list = constants.DEFAULT_PLAYERS_NUMBER,
+    ) -> None:
+        self.winner = None
+        self.num_of_players = num_of_players
+        self.is_running = True
+        self.players = []
+
+        # todo: function that creates players
+        for _ in range(self.num_of_players):
+            self.players.append(Player(username=str(_)))
+
+        self.party = Party(self.players[0])
+
+
+    def score(self) -> int:
+        """
+        Check each players global game score
+        """
+        for player in self.players:
+            print(player)
+
+
+    def lunch(self) -> None:
+        """
+        Lunch the main game loop
+        """
+        print('Game lunching..')
+        self.party.run()
 
