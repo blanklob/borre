@@ -5,11 +5,12 @@ name = "pypi"
 
 [packages]
 fastapi = "*"
+uvicorn = {extras = ["standard"], version = "*"}
 
 [dev-packages]
 
 [scripts]
-game = "python bore/main.py"
+game = "python bore/game.py"
 test = "python bore/tests/test_dice.py"
 
 [requires]

@@ -4,7 +4,7 @@ import constants
 class Dice:
     def __init__(
         self,
-        sides = constants.NB_DICE_SIDE
+        sides: int = constants.NB_DICE_SIDE
     ) -> None:
         self.sides = sides
 
@@ -12,22 +12,21 @@ class Dice:
         """
         Perform a roll, and return the value of the roll
         """
-        result = random.randint(1, self.sides)
-        return result
+        return random.randint(1, self.sides)
 
 
 class Set:
     def __init__(
         self,
-        number_of_dices = constants.DEFAULT_DICES_NB
+        number_of_dices: int = constants.DEFAULT_DICES_NB
     ) -> None:
         self.number_of_dices = number_of_dices
         self.dices = []
-        self.occurences = [0] * self.number_of_dices
-        print(self.occurences)
+        self.occurences = [0] * constants.NB_DICE_SIDE
 
         for _ in range(self.number_of_dices):
             self.dices.append(Dice())
+
 
     def roll(self) -> list:
         """
@@ -35,29 +34,49 @@ class Set:
         """
         for dice in self.dices:
             if type(dice) is Dice:
+                # the dice.roll() method returns a random integer
+                # between 1 and 6
                 result = dice.roll()
                 self.occurences[result-1] += 1
 
         return self.occurences
 
 
-class Game:
-    def __init__(self) -> None:
-        self.set = Set()
+class Player:
+    def __init__(
+        self,
+        username: str
+    ) -> None:
+        self.username = username
         self.score = 0
+        self.is_playing = False
+
+
+    def __repr__(self) -> str:
+        return f'You are {self.username} and your score is {self.score} points'
+
+
+class Party:
+    def __init__(self, player: Player) -> None:
+        self.set = Set()
+        self.player = player
+        self.score = 0
+
+
+    def __repr__(self) -> str:
+        return f'Player {self.player} is playing and has stacked a score of {self.score} points'
 
 
     def run(self) -> None:
         """
-        Runs the bore game
+        Rolls a set of dice
         """
         self.set.roll()
-        self.global_score()
 
 
-    def standard_score(self) -> int:
+    def get_standard_score(self) -> int:
         """
-        Returns the standard game score
+        Calculate and returns the standard party score
         """
         result = (
             self.set.occurences[constants.LIST_SCORING_DICE_VALUE[0]-1] * constants.LIST_SCORING_MULTIPLIER[0]
@@ -67,9 +86,9 @@ class Game:
         return result
 
 
-    def bonus_score(self) -> int:
+    def get_bonus_score(self) -> int:
         """
-        Returns the bonus game score
+        Calculate and returns bonus score if there is any combos
         """
         score = 0
         for index, occurrence in enumerate(self.set.occurences):
@@ -87,7 +106,8 @@ class Game:
         return score
 
 
-    def global_score(self) -> int:
+    # score getter
+    def get_score(self) -> int:
         """
         Returns the global game score
         """
@@ -97,10 +117,17 @@ class Game:
 
 
 
-class Player:
-    def __init__(self) -> None:
+class Game:
+    def __init__(self, num_of_players: list) -> None:
+        self.party = Party()
+        self.winner = None
+        self.num_of_players = num_of_players
+
+
+    def score(self) -> int:
         pass
 
 
-    def __repr__(self) -> str:
-        pass
+    def lunch(self) -> None:
+        print(self.party)
+        self.party.run()

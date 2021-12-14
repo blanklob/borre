@@ -2,7 +2,7 @@
 DEFAULT_TARGET_SCORE = 2000
 
 # Number of dices by default in the set
-DEFAULT_DICES_NB = 2
+DEFAULT_DICES_NB = 5
 
 # Number of side of the dices used in the game
 NB_DICE_SIDE = 6
