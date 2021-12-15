@@ -1,7 +1,7 @@
 import random
-import constants
-from player import Player
-from utils import (
+from . import constants
+from .player import Player
+from .utils import (
     get_player_input
 )
 

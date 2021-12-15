@@ -8,10 +8,11 @@ fastapi = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 
 [dev-packages]
+pytest = "*"
 
 [scripts]
 game = "python bore/main.py"
-test = "python bore/tests/test_dice.py"
+tests = "python -m pytest tests"
 serve = "uvicorn bore.api:app --reload"
 
 [requires]

@@ -12,7 +12,7 @@ setup(
     url="https://github.com/younessidbakkasse/bore",
     author=["Youness Id bakkasse", "David", "...", "..."],
     author_email=["Youness Id bakkasse", "David", "...", "..."],
-    description="A dice game made using Python",
+    description="A Dice game made using Python",
     long_description=get_description(),
     long_description_content_type="text/markdown",
     packages=find_packages(),
