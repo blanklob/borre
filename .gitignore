@@ -143,4 +143,4 @@ dmypy.json
 cython_debug/
 
 # Poetry files
-./poetry.lock
+poetry.lock
