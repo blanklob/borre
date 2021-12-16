@@ -1,6 +1,6 @@
-from . import constants 
-from .player import Player
-from .dice import Party
+import constants 
+from player import Player
+from dice import Party
 
 
 class Game:
