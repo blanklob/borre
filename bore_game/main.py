@@ -1,13 +1,6 @@
-from game import Game
+import bore_game
 
+# Initiate the game
+game = bore_game.Bore()
 
-if __name__ == "__main__":
-    # Initiate the game
-    game = Game()
-
-    # Run the game
-    game.lunch()
-
-    # Output the final results
-    game.score()
 

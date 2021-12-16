@@ -1,14 +1,14 @@
 import random
-import constants
-from player import Player
-from utils import (
+import bore_game.constants as const
+from bore_game.player import Player
+from bore_game.utils import (
     get_player_input
 )
 
 class Dice:
     def __init__(
         self,
-        sides: int = constants.NB_DICE_SIDE
+        sides: int = const.NB_DICE_SIDE
     ) -> None:
         self.sides = sides
 
@@ -27,11 +27,11 @@ class Dice:
 class Set:
     def __init__(
         self,
-        number_of_dices: int = constants.DEFAULT_DICES_NB
+        number_of_dices: int = const.DEFAULT_DICES_NB
     ) -> None:
         self.number_of_dices = number_of_dices
         self.dices = []
-        self.occurences = [0] * constants.NB_DICE_SIDE
+        self.occurences = [0] * const.NB_DICE_SIDE
         self.score = 0
 
         for _ in range(self.number_of_dices):
@@ -67,13 +67,13 @@ class Party:
     ) -> None:
         self.player = player
         self.score = 0
-        self.number_of_dices_left = constants.DEFAULT_DICES_NB
+        self.number_of_dices_left = const.DEFAULT_DICES_NB
         self.is_running = True
 
 
     def __repr__(self) -> str:
         return f"""
-        The player {self.player.username} is playing and has stacked a score of 
+        The player {self.player.username} is playing and has stacked a score of
         {self.score} points, there are {self.number_of_dices_left} dices left.
         """
 
@@ -104,7 +104,7 @@ class Party:
         Calculate and returns the standard party score
         """
         score = 0
-        for dice_value, score_multiplier in constants.LIST_SCORING_MERGED:
+        for dice_value, score_multiplier in const.LIST_SCORING_MERGED:
             score += self.set.occurences[dice_value - 1] * score_multiplier
 
             # Remove dices who were eligible to standard score
@@ -119,24 +119,24 @@ class Party:
         """
         score = 0
         for index, occurrence in enumerate(self.set.occurences):
-            num_of_bonus = occurrence // constants.TRIGGER_OCCURRENCE_FOR_BONUS
+            num_of_bonus = occurrence // const.TRIGGER_OCCURRENCE_FOR_BONUS
 
             if num_of_bonus:
                 if index == 0:
-                    score += num_of_bonus * constants.BONUS_VALUE_FOR_ACE_BONUS
+                    score += num_of_bonus * const.BONUS_VALUE_FOR_ACE_BONUS
                 else:
-                    score += num_of_bonus * constants.BONUS_VALUE_FOR_NORMAL_BONUS * (index + 1)
+                    score += num_of_bonus * const.BONUS_VALUE_FOR_NORMAL_BONUS * (index + 1)
 
             # Reset items who have bonus score
-            self.set.occurences[index] %= constants.TRIGGER_OCCURRENCE_FOR_BONUS
- 
+            self.set.occurences[index] %= const.TRIGGER_OCCURRENCE_FOR_BONUS
+
         return score
 
 
     def validate(self) -> None:
         """
         Validate if the player wishes to continue the party and roll another set,
-        or if has no more scoring Dices left 
+        or if has no more scoring Dices left
         """
         if (self.set.score == 0):
             self.score = 0
@@ -149,7 +149,7 @@ class Party:
             if (player_input == "non"):
                 self.is_running = False
             else:
-               self.number_of_dices_left = constants.DEFAULT_DICES_NB 
+               self.number_of_dices_left = const.DEFAULT_DICES_NB
 
         else:
             player_input = get_player_input("Do you want to continue ? (Yes or Non)")
