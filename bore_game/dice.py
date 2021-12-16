@@ -86,7 +86,7 @@ class Party:
         Calculate and returns the standard party score
         """
         score = 0
-        for dice_value, score_multiplier in const.LIST_SCORING_MERGED:
+        for dice_value, score_multiplier in zip(const.LIST_SCORING_DICE_VALUE, const.LIST_SCORING_MULTIPLIER):
             score += self.set.occurences[dice_value - 1] * score_multiplier
 
             # Remove dices who were eligible to standard score

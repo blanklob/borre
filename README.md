@@ -3,7 +3,7 @@ Bore is a dead simple Dice 🎲 game made using Python. (School project 📖)
 
 ## Usage
 
-> Before getting started, [install Python 3.9](https://www.python.org/downloads/release/python-390/)
+> Before getting started, [install Python 3.6](https://www.python.org/downloads/release/python-390/)
 
 > Then set the python PATH in your machine.
 > [→ Learn more about Paths](https://www.javatpoint.com/how-to-set-python-path).
@@ -18,7 +18,7 @@ python bore/main.py
 
 This package supports the following minimum versions:
 
-* Python >= 3.9
+* Python >= 3.6
 
 Earlier versions may still work, but we encourage people building new applications
 to upgrade to the current stable.
@@ -32,11 +32,4 @@ chat with the community in [GitHub Discussions](https://github.com/younessidbakk
 ## Contributing
 
 Everyone is welcome to make this game batter feel free to submit your PR 😀.
-
-
-## Roadmap
-
-1 - Lunch fully functionnal MVG (Minimum valuable game)
-2 - Create an API that consumes the game endpoints
-3 - Make a client to interact with the game in the browser in **real time**
 

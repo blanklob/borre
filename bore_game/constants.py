@@ -13,9 +13,6 @@ LIST_SCORING_DICE_VALUE = [1, 5]
 # List of associated score for scoring dice values
 LIST_SCORING_MULTIPLIER = [100, 50]
 
-# List of associated score and their respective dice labels
-LIST_SCORING_MERGED = zip(LIST_SCORING_DICE_VALUE, LIST_SCORING_MULTIPLIER)
-
 # Trigger for multiple bonus
 TRIGGER_OCCURRENCE_FOR_BONUS = 3
 
@@ -25,9 +22,11 @@ BONUS_VALUE_FOR_ACE_BONUS = 1000
 # Standard multiplier for multiple dices value bonus
 BONUS_VALUE_FOR_NORMAL_BONUS = 100
 
-THROW_DICE_COUNTER = 6
-
-STACK_BONUS = 0
-
 # Number of players by default
 DEFAULT_PLAYERS_NUMBER = 2
+
+# Imperative constant
+THROW_DICE_COUNTER = 6
+
+# Imperative constant
+STACK_BONUS = 0

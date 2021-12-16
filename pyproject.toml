@@ -6,7 +6,8 @@ authors = ["Youness Id bakkasse <std.youness@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.scripts]
-game = 'bore_game.main:game'
+game = "bore_game.main:game"
+example = "examples.main:main"
 
 [tool.poetry.dependencies]
 python = "^3.9"
