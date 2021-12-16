@@ -1,5 +1,6 @@
 import bore_game
 
+
 def test_bore_version():
     """
     Tests the version number

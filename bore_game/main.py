@@ -17,7 +17,6 @@ class Bore:
         for _ in range(self.num_of_players):
             self.players.append(Player(username=str(_)))
 
-
     def score(self) -> int:
         """
         Check each players global game score
