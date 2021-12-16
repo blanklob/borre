@@ -1,11 +1,7 @@
 import bore_game
 
-# Initiate the game
-game = bore_game.Bore()
-
-
 def test_bore_version():
     """
     Tests the version number
     """
-    assert game.is_running == True
+    assert bore_game.__version__ == "0.0.1"

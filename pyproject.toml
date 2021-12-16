@@ -6,8 +6,7 @@ authors = ["Youness Id bakkasse <std.youness@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.scripts]
-poetry = 'bore_game.main:game'
-
+game = 'bore_game.main:game'
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -15,6 +14,7 @@ python = "^3.9"
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
 black = "^21.12b0"
+mypy = "^0.920"
 
 [tool.poetry.urls]
 bug-tracker = "https://github.com/younessidbakkasse/bore/issues"
