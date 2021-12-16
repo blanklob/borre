@@ -1,14 +1,13 @@
 [tool.poetry]
 name = "bore-game"
 version = "0.1.0"
-description = ""
+description = "README.md"
 authors = ["Youness Id bakkasse <std.youness@gmail.com>"]
 license = "MIT"
-readme = "README.md"
 
 [tool.poetry.scripts]
-bore = "bore_game.main:game.lunch()"
-tests = "pytest"
+poetry = 'bore_game.main:game'
+
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -20,6 +19,11 @@ black = "^21.12b0"
 [tool.poetry.urls]
 bug-tracker = "https://github.com/younessidbakkasse/bore/issues"
 home-page = "https://github.com/younessidbakkasse/bore"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

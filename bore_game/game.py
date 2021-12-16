@@ -17,6 +17,8 @@ class Bore:
         for _ in range(self.num_of_players):
             self.players.append(Player(username=str(_)))
 
+    def __call__(self, *args: any, **kwargs: any) -> any:
+        return self.lunch()(*args, **kwargs)
 
     def score(self) -> int:
         """
@@ -25,20 +27,18 @@ class Bore:
         for player in self.players:
             print(player)
 
-
     def lunch(self) -> None:
         """
         Lunch the main game loop
         """
         while self.is_running:
             for player in self.players:
-                print(f'Player {player.username} will play...')
+                print(f"Player {player.username} will play...")
                 party = Party(player)
                 party.run()
 
                 print(party)
                 if player.score >= const.DEFAULT_TARGET_SCORE:
                     self.is_running = False
-                    print(f'The player {player.username} won Bore 🎉.')
+                    print(f"The player {player.username} won Bore 🎉.")
                     break
-

@@ -21,12 +21,13 @@ def roll_dice_set(how_many_dice):
     # return dice_value_list
     return analyse_bonus_score(dice_value_list)
 
+
 def analyse_bonus_score(dice_value_list):
     bonus_score = 0
 
     for index, dice_value in enumerate(dice_value_list):
 
-        nb_of_bonus = dice_value // constants.TRIGGER_OCCURRENCE_FOR_BONUS # 3
+        nb_of_bonus = dice_value // constants.TRIGGER_OCCURRENCE_FOR_BONUS  # 3
 
         if nb_of_bonus > 0:
             if index == 0:
@@ -42,13 +43,13 @@ def analyse_bonus_score(dice_value_list):
     return analyse_standard_score(dice_value_list, bonus_score)
 
 
-
 def analyse_standard_score(dice_value_list, bonus_score):
     standard_score = 0
-    for scoring_value, scoring_multiplier in zip(constants.LIST_SCORING_DICE_VALUE, constants.LIST_SCORING_MULTIPLIER):
+    for scoring_value, scoring_multiplier in zip(
+        constants.LIST_SCORING_DICE_VALUE, constants.LIST_SCORING_MULTIPLIER
+    ):
         standard_score += dice_value_list[scoring_value - 1] * scoring_multiplier
         dice_value_list[scoring_value - 1] = 0
-
 
     return analyse_score(dice_value_list, standard_score, bonus_score)
 
@@ -82,6 +83,3 @@ def analyse_score(dice_value_list, standard_score, bonus_score):
 
 
 roll_dice_set(constants.THROW_DICE_COUNTER)
-
-
-

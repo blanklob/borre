@@ -1,34 +1,25 @@
 import random
 import bore_game.constants as const
 from bore_game.player import Player
-from bore_game.utils import (
-    get_player_input
-)
+from bore_game.utils import get_player_input
+
 
 class Dice:
-    def __init__(
-        self,
-        sides: int = const.NB_DICE_SIDE
-    ) -> None:
+    def __init__(self, sides: int = const.NB_DICE_SIDE) -> None:
         self.sides = sides
 
     def __repr__(self) -> str:
-        return f'Dice with {self.sides} sides'
+        return f"Dice with {self.sides} sides"
 
-
-    def roll (self) -> int:
+    def roll(self) -> int:
         """
         Perform a roll, and return the value of the roll
         """
         return random.randint(1, self.sides)
 
 
-
 class Set:
-    def __init__(
-        self,
-        number_of_dices: int = const.DEFAULT_DICES_NB
-    ) -> None:
+    def __init__(self, number_of_dices: int = const.DEFAULT_DICES_NB) -> None:
         self.number_of_dices = number_of_dices
         self.dices = []
         self.occurences = [0] * const.NB_DICE_SIDE
@@ -37,13 +28,11 @@ class Set:
         for _ in range(self.number_of_dices):
             self.dices.append(Dice())
 
-
     def __repr__(self) -> str:
-        set_repr = ''
+        set_repr = ""
         for dice_value in self.occurences:
-            set_repr += f'*{dice_value}: {self.occurences[dice_value -1]} /n'
+            set_repr += f"*{dice_value}: {self.occurences[dice_value -1]} /n"
         return set_repr
-
 
     def roll(self) -> list:
         """
@@ -54,29 +43,23 @@ class Set:
                 # the dice.roll() method returns a random integer
                 # between 1 and 6
                 result = dice.roll()
-                self.occurences[result-1] += 1
+                self.occurences[result - 1] += 1
 
         return self.occurences
 
 
-
 class Party:
-    def __init__(
-        self,
-        player: Player
-    ) -> None:
+    def __init__(self, player: Player) -> None:
         self.player = player
         self.score = 0
         self.number_of_dices_left = const.DEFAULT_DICES_NB
         self.is_running = True
-
 
     def __repr__(self) -> str:
         return f"""
         The player {self.player.username} is playing and has stacked a score of
         {self.score} points, there are {self.number_of_dices_left} dices left.
         """
-
 
     def run(self) -> None:
         """
@@ -98,7 +81,6 @@ class Party:
 
         self.player.score += self.score
 
-
     def calculate_standard_score(self) -> int:
         """
         Calculate and returns the standard party score
@@ -112,7 +94,6 @@ class Party:
 
         return score
 
-
     def calculate_bonus_score(self) -> int:
         """
         Calculate and returns the global score if there is any combos
@@ -125,34 +106,37 @@ class Party:
                 if index == 0:
                     score += num_of_bonus * const.BONUS_VALUE_FOR_ACE_BONUS
                 else:
-                    score += num_of_bonus * const.BONUS_VALUE_FOR_NORMAL_BONUS * (index + 1)
+                    score += (
+                        num_of_bonus * const.BONUS_VALUE_FOR_NORMAL_BONUS * (index + 1)
+                    )
 
             # Reset items who have bonus score
             self.set.occurences[index] %= const.TRIGGER_OCCURRENCE_FOR_BONUS
 
         return score
 
-
     def validate(self) -> None:
         """
         Validate if the player wishes to continue the party and roll another set,
         or if has no more scoring Dices left
         """
-        if (self.set.score == 0):
+        if self.set.score == 0:
             self.score = 0
             self.is_running = False
             return None
 
-        if (self.number_of_dices_left == 0):
-            player_input = get_player_input("Do you want to reset the game ? (Yes or Non)")
+        if self.number_of_dices_left == 0:
+            player_input = get_player_input(
+                "Do you want to reset the game ? (Yes or Non)"
+            )
 
-            if (player_input == "non"):
+            if player_input == "non":
                 self.is_running = False
             else:
-               self.number_of_dices_left = const.DEFAULT_DICES_NB
+                self.number_of_dices_left = const.DEFAULT_DICES_NB
 
         else:
             player_input = get_player_input("Do you want to continue ? (Yes or Non)")
 
-            if (player_input == "non"):
+            if player_input == "non":
                 self.is_running = False
