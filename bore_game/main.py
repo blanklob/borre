@@ -1,4 +1,4 @@
-import bore_game.constants as const
+import bore_game.parametres as params
 from bore_game.player import Player
 from bore_game.dice import Party
 
@@ -6,7 +6,7 @@ from bore_game.dice import Party
 class Bore:
     def __init__(
         self,
-        num_of_players: list = const.DEFAULT_PLAYERS_NUMBER,
+        num_of_players: list = params.DEFAULT_PLAYERS_NUMBER,
     ) -> None:
         self.winner = None
         self.num_of_players = num_of_players
@@ -35,7 +35,7 @@ class Bore:
                 party.run()
 
                 print(party)
-                if player.score >= const.DEFAULT_TARGET_SCORE:
+                if player.score >= params.DEFAULT_TARGET_SCORE:
                     self.is_running = False
                     print(f"The player {player.username} won Bore 🎉.")
                     break

@@ -7,4 +7,4 @@ from .main import Bore as Bore
 from .dice import Dice as Dice
 from .player import Player as Player
 from .utils import get_player_input as get_player_input
-from . import constants as constants
+from . import parametres as parametres

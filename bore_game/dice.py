@@ -1,11 +1,11 @@
 import random
-import bore_game.constants as const
+import bore_game.parametres as params
 from bore_game.player import Player
 from bore_game.utils import get_player_input
 
 
 class Dice:
-    def __init__(self, sides: int = const.NB_DICE_SIDE) -> None:
+    def __init__(self, sides: int = params.NB_DICE_SIDE) -> None:
         self.sides = sides
 
     def __repr__(self) -> str:
@@ -19,10 +19,10 @@ class Dice:
 
 
 class Set:
-    def __init__(self, number_of_dices: int = const.DEFAULT_DICES_NB) -> None:
+    def __init__(self, number_of_dices: int = params.DEFAULT_DICES_NB) -> None:
         self.number_of_dices = number_of_dices
         self.dices = []
-        self.occurences = [0] * const.NB_DICE_SIDE
+        self.occurences = [0] * params.NB_DICE_SIDE
         self.score = 0
 
         for _ in range(self.number_of_dices):
@@ -52,7 +52,7 @@ class Party:
     def __init__(self, player: Player) -> None:
         self.player = player
         self.score = 0
-        self.number_of_dices_left = const.DEFAULT_DICES_NB
+        self.number_of_dices_left = params.DEFAULT_DICES_NB
         self.is_running = True
 
     def __repr__(self) -> str:
@@ -86,7 +86,7 @@ class Party:
         Calculate and returns the standard party score
         """
         score = 0
-        for dice_value, score_multiplier in zip(const.LIST_SCORING_DICE_VALUE, const.LIST_SCORING_MULTIPLIER):
+        for dice_value, score_multiplier in zip(params.LIST_SCORING_DICE_VALUE, params.LIST_SCORING_MULTIPLIER):
             score += self.set.occurences[dice_value - 1] * score_multiplier
 
             # Remove dices who were eligible to standard score
@@ -100,18 +100,18 @@ class Party:
         """
         score = 0
         for index, occurrence in enumerate(self.set.occurences):
-            num_of_bonus = occurrence // const.TRIGGER_OCCURRENCE_FOR_BONUS
+            num_of_bonus = occurrence // params.TRIGGER_OCCURRENCE_FOR_BONUS
 
             if num_of_bonus:
                 if index == 0:
-                    score += num_of_bonus * const.BONUS_VALUE_FOR_ACE_BONUS
+                    score += num_of_bonus * params.BONUS_VALUE_FOR_ACE_BONUS
                 else:
                     score += (
-                        num_of_bonus * const.BONUS_VALUE_FOR_NORMAL_BONUS * (index + 1)
+                        num_of_bonus * params.BONUS_VALUE_FOR_NORMAL_BONUS * (index + 1)
                     )
 
             # Reset items who have bonus score
-            self.set.occurences[index] %= const.TRIGGER_OCCURRENCE_FOR_BONUS
+            self.set.occurences[index] %= params.TRIGGER_OCCURRENCE_FOR_BONUS
 
         return score
 
@@ -133,7 +133,7 @@ class Party:
             if player_input == "non":
                 self.is_running = False
             else:
-                self.number_of_dices_left = const.DEFAULT_DICES_NB
+                self.number_of_dices_left = params.DEFAULT_DICES_NB
 
         else:
             player_input = get_player_input("Do you want to continue ? (Yes or Non)")
