@@ -14,7 +14,6 @@ def create_player():
             'isWining': False,
             'endTurn': False,
             'diceToThrow': params.THROW_DICE_COUNTER,
-
         })
     return PLAYER
 
@@ -123,7 +122,5 @@ def game():
         print('------------------------------------------')
         round(players)
 
-
-
-
-game()
+if __name__ == "__main__":
+    game()
