@@ -10,7 +10,7 @@ class Dice:
     def __init__(
         self,
         sides: int = params.NB_DICE_SIDE,
-        seed: random.Random = None
+        seed: None = None
     ) -> None:
         try:
             if sides < 1:
