@@ -1,7 +1,7 @@
 import bore_game
 
 
-def test_bore_version():
+def test_version():
     """
     Tests the version number
     """

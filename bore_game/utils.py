@@ -11,7 +11,7 @@ def get_player_input(prompt: str) -> str:
         try:
             response = input(prompt + "\n")
         except ValueError:
-            logger.exception("Sorry, I didn't understand that.")
+            logger.critical("Sorry, I didn't understand that.")
             continue
 
         if response.lower() not in ("yes", "non"):
@@ -21,4 +21,3 @@ def get_player_input(prompt: str) -> str:
             break
 
     return response.lower()
-
