@@ -2,4 +2,4 @@
 
 set -x
 
-black bore_game tests
+poetry run black bore_game tests

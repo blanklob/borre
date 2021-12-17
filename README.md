@@ -3,7 +3,7 @@ Bore is a dead simple Dice 🎲 game made using Python. (School project 📖)
 
 ## Usage
 
-> Before getting started, [install Python 3.6](https://www.python.org/downloads/release/python-390/)
+> Before getting started, [install Python 3.6](https://www.python.org/downloads/release/python-360/)
 
 > Then set the python PATH in your machine.
 > [→ Learn more about Paths](https://www.javatpoint.com/how-to-set-python-path).
@@ -18,7 +18,7 @@ python bore/main.py
 
 This package supports the following minimum versions:
 
-* Python >= 3.6
+* Python >= 3.6.2
 
 Earlier versions may still work, but we encourage people building new applications
 to upgrade to the current stable.

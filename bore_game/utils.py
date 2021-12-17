@@ -1,16 +1,20 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 def get_player_input(prompt: str) -> str:
     """
-    Validates and returns user input
+    A shorthand for validating user input
     """
     while True:
         try:
             response = input(prompt + "\n")
         except ValueError:
-            print("Sorry, I didn't understand that.")
+            logger.exception(f"Sorry, I didn't understand that.")
             continue
 
         if response.lower() not in ("yes", "non"):
-            print("Sorry, your response must be either (Yes) or (Non).")
+            logger.warning("Sorry, your response must be either (Yes) or (Non).")
             continue
         else:
             break

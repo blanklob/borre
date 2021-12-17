@@ -1,9 +1,13 @@
 import bore_game
+import logging
 
-
-game = bore_game.Bore()
+logger = logging.getLogger(__name__)
 
 def main():
-    print(game.is_running)
+    game = bore_game.Bore()
     game.lunch()
+
+
+if __name__ == "__main__":
+    main()
 

@@ -3,4 +3,4 @@
 set -e
 set -x
 
-mypy bore_game
+poetry run mypy bore_game
