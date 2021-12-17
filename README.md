@@ -2,7 +2,7 @@
 
 Bore is a dead simple Dice 🎲 game made using Python. (School project 📖)
 
-[![PyPI version](https://badge.fury.io/py/bore-game.svg)](https://badge.fury.io/py/bore-game)
+[![PyPI version](https://img.shields.io/pypi/v/bore-game.svg)](https://img.shields.io/pypi/v/bore-game)
 [![Tests](https://github.com/younessidbakkasse/bore/actions/workflows/ci.yml/badge.svg)](https://github.com/younessidbakkasse/bore/actions/workflows/ci.yml)
 [![Code Quality](https://github.com/younessidbakkasse/bore/actions/workflows/quality.yml/badge.svg?branch=main)](https://github.com/younessidbakkasse/bore/actions/workflows/quality.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
