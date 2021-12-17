@@ -1,7 +1,9 @@
-import bore_game.parametres as params
-from bore_game.player import Player
-from bore_game.dice import Party
 from typing import List
+
+import bore_game.parametres as params
+from bore_game.dice import Party
+from bore_game.player import Player
+
 
 class Bore:
     def __init__(

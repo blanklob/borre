@@ -1,5 +1,6 @@
 import random
 from typing import List
+
 import bore_game.parametres as params
 from bore_game.player import Player
 from bore_game.utils import get_player_input
@@ -87,7 +88,9 @@ class Party:
         Calculate and returns the standard party score
         """
         score = 0
-        for dice_value, score_multiplier in zip(params.LIST_SCORING_DICE_VALUE, params.LIST_SCORING_MULTIPLIER):
+        for dice_value, score_multiplier in zip(
+            params.LIST_SCORING_DICE_VALUE, params.LIST_SCORING_MULTIPLIER
+        ):
             score += self.set.occurences[dice_value - 1] * score_multiplier
 
             # Remove dices who were eligible to standard score

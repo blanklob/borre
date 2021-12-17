@@ -2,6 +2,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def get_player_input(prompt: str) -> str:
     """
     A shorthand for validating user input
@@ -10,7 +11,7 @@ def get_player_input(prompt: str) -> str:
         try:
             response = input(prompt + "\n")
         except ValueError:
-            logger.exception(f"Sorry, I didn't understand that.")
+            logger.exception("Sorry, I didn't understand that.")
             continue
 
         if response.lower() not in ("yes", "non"):
