@@ -33,10 +33,9 @@ def roll_dice_set(player):
 
 
 def analyse_bonus_score(dice_value_occurrence_list, player):
-   print(dice_value_occurrence_list)
-
-   bonus_score = 0
-   for index, dice_value in enumerate(dice_value_occurrence_list):
+    print(dice_value_occurrence_list)
+    bonus_score = 0
+    for index, dice_value in enumerate(dice_value_occurrence_list):
        nb_of_bonus = dice_value // params.TRIGGER_OCCURRENCE_FOR_BONUS
        if nb_of_bonus > 0:
            if index == 0:
@@ -47,8 +46,8 @@ def analyse_bonus_score(dice_value_occurrence_list, player):
            bonus_score += nb_of_bonus * bonus_mulitplier * (index + 1)
            dice_value_occurrence_list[index] %= params.TRIGGER_OCCURRENCE_FOR_BONUS
 
-   player["turnScore"] += bonus_score
-   return dice_value_occurrence_list
+    player["turnScore"] += bonus_score
+    return dice_value_occurrence_list
 
 def analyse_standard_score(dice_value_occurrence_list, player):
     standard_score = 0
