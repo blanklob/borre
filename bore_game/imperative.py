@@ -3,12 +3,13 @@ import parametres as params
 
 def create_player():
     PLAYER = []
-    how_many_player = int(input("combien de joueur êtes vous ?"))
+    how_many_player = int(input("combien de joueur êtes vous ? "))
     for index in range(how_many_player):
-        player_username = str(input("votre nom"))
+        player_username = str(input("votre nom "))
         PLAYER.append({
             'username': player_username,
             'score': 0,
+            'RoundScore': 0,
             'turnScore': 0,
             'id': index,
             'isWining': False,
@@ -19,7 +20,7 @@ def create_player():
 
 
 def roll_dice_set(player):
-    print(player['username'])
+    print(f"{player['username']}")
     dice_to_throw = player['diceToThrow']
     dice_value_occurrence_list = [0] * params.NB_DICE_SIDE
     for n in range(dice_to_throw):
@@ -27,7 +28,6 @@ def roll_dice_set(player):
         dice_value_occurrence_list[dice_value - 1] += 1
 
     player['diceToThrow'] = 0
-    #print('roll_dice_set END ---------------------------------')
     return dice_value_occurrence_list
 
 
@@ -46,9 +46,7 @@ def analyse_bonus_score(dice_value_occurrence_list, player):
            bonus_score += nb_of_bonus * bonus_mulitplier * (index + 1)
            dice_value_occurrence_list[index] %= params.TRIGGER_OCCURRENCE_FOR_BONUS
 
-   #print(bonus_score)
    player["turnScore"] += bonus_score
-   #print('analyse_bonus_score END ---------------------------------')
    return dice_value_occurrence_list
 
 def analyse_standard_score(dice_value_occurrence_list, player):
@@ -57,20 +55,16 @@ def analyse_standard_score(dice_value_occurrence_list, player):
         standard_score += dice_value_occurrence_list[scoring_value - 1] * scoring_multiplier
         dice_value_occurrence_list[scoring_value - 1] = 0
 
-    #print(standard_score)
     player["turnScore"] += standard_score
-    #print('analyse_standard_score END ---------------------------------')
-
     return dice_value_occurrence_list
 
 
 def analyse_score(dice_value_occurrence_list, player):
 
-    print("#########")
-    print("votre score ce tour est de : " + str(player['turnScore']))
-    print("votre score global est de : " + str(player['score']))
-    print("#########")
-
+    print("votre score sur ce lancé est de : " + str(player['turnScore']))
+    print(f"votre score sur ce round est de  {player['RoundScore']}")
+    print('')
+    player["RoundScore"] += player["turnScore"]
     if player['turnScore'] + player['score'] > player['score']:
         for n in dice_value_occurrence_list:
             player['diceToThrow'] += n
@@ -86,11 +80,9 @@ def analyse_score(dice_value_occurrence_list, player):
         return None
 
 
-
-
     print('Il vous reste ' + str(player['diceToThrow']) + ' a lancer')
-    wannaPlayAgain = input("voulez vous relancez ?")
-    if wannaPlayAgain == "y":
+    wannaPlayAgain = input("voulez vous relancez ? Oui | Non ")
+    if wannaPlayAgain == "Oui" or wannaPlayAgain == "oui":
         player['endTurn'] = False
     else:
         player['endTurn'] = True
@@ -99,6 +91,11 @@ def analyse_score(dice_value_occurrence_list, player):
 
 def round(players):
     for player in players:
+        print(" C'est au tour de " + str(player['username'] + " avec un score de " + str(player['score'])))
+
+        print('')
+        player["turnScore"] += 0
+        player["RoundScore"] += 0
         player['endTurn'] = False
         player['diceToThrow'] = params.THROW_DICE_COUNTER
         while not player['endTurn']:
@@ -118,7 +115,7 @@ def game():
     while params.SOMEONE_WIN == False:
         i += 1
         print('------------------------------------------')
-        print(i)
+        print(f"tour numéro  {i}")
         print('------------------------------------------')
         round(players)
 
