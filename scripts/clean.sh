@@ -7,3 +7,7 @@ fi
 if [ -d '.tox' ] ; then
     rm -r .tox
 fi
+
+if [ -d '.mypy_cache' ] ; then
+    rm -r .mypy_cache
+fi
