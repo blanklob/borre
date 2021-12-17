@@ -1,9 +1,16 @@
 [tool.poetry]
 name = "bore-game"
-version = "0.1.0"
-description = "README.md"
+version = "0.1.1"
+description = "Bore is a dead simple Dice game"
 authors = ["Youness Id bakkasse <std.youness@gmail.com>"]
 license = "MIT"
+readme = "README.md"
+documentation = "https://github.com/younessidbakkasse/bore"
+keywords = [
+  "dice game",
+  "game",
+  "dice"
+]
 
 [tool.poetry.scripts]
 game = "bore_game.main:game"
@@ -26,10 +33,6 @@ home-page = "https://github.com/younessidbakkasse/bore"
 minversion = "6.0"
 addopts = "-ra -q"
 testpaths = ["tests"]
-
-[tool.dephell.main]
-from = {format = "poetry", path = "pyproject.toml"}
-to = {format = "setuppy", path = "setup.py"}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
