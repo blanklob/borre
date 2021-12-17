@@ -2,6 +2,7 @@
 
 Bore is a dead simple Dice 🎲 game made using Python. (School project 📖)
 
+[![PyPI version](https://badge.fury.io/py/bore-game.svg)](https://badge.fury.io/py/bore-game)
 [![Tests](https://github.com/younessidbakkasse/bore/actions/workflows/ci.yml/badge.svg)](https://github.com/younessidbakkasse/bore/actions/workflows/ci.yml)
 [![Code Quality](https://github.com/younessidbakkasse/bore/actions/workflows/quality.yml/badge.svg?branch=main)](https://github.com/younessidbakkasse/bore/actions/workflows/quality.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -23,10 +24,10 @@ to upgrade to the current stable.
 
 ## Usage
 
-After the installation, you will need to install the **bore_game** package localy, to do so use the commande below:
+After the installation, you will need to install the **bore-game** package localy, to do so use the commande below:
 
 ```shell
-python -m pip install -e .
+pip install bore-game
 ```
 
 The main game example entrypoint is in the **main.py** file, run the command below to start the game.
