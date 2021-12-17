@@ -2,7 +2,7 @@ from typing import List
 import logging
 
 import bore_game.parametres as params
-from bore_game.dice import Party
+from bore_game.party import Party
 from bore_game.player import Player
 
 
