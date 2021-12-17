@@ -6,7 +6,7 @@ from bore_game.dice import Party
 class Bore:
     def __init__(
         self,
-        num_of_players: list = params.DEFAULT_PLAYERS_NUMBER,
+        num_of_players: int = params.DEFAULT_PLAYERS_NUMBER,
     ) -> None:
         self.winner = None
         self.num_of_players = num_of_players
@@ -17,12 +17,14 @@ class Bore:
         for _ in range(self.num_of_players):
             self.players.append(Player(username=str(_)))
 
-    def score(self) -> int:
+    def score(self) -> list[Player]:
         """
         Check each players global game score
         """
         for player in self.players:
             print(player)
+
+        return self.players
 
     def lunch(self) -> None:
         """

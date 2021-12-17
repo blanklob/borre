@@ -1,4 +1,5 @@
 import random
+from typing import AnyStr
 import bore_game.parametres as params
 from bore_game.player import Player
 from bore_game.utils import get_player_input
@@ -34,7 +35,7 @@ class Set:
             set_repr += f"*{dice_value}: {self.occurences[dice_value -1]} /n"
         return set_repr
 
-    def roll(self) -> list:
+    def roll(self) -> list[int]:
         """
         Perform a roll of a number of dices
         """
