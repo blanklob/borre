@@ -38,7 +38,6 @@ class Bore:
                 party = Party(player)
                 party.run()
 
-                print(party)
                 if player.score >= params.DEFAULT_TARGET_SCORE:
                     self.is_running = False
                     print(f"The player {player.username} won Bore 🎉.")

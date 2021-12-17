@@ -1,6 +1,7 @@
 import logging
 import bore_game
 
+
 logger = logging.getLogger(__name__)
 
 
