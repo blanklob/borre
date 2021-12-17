@@ -27,6 +27,10 @@ minversion = "6.0"
 addopts = "-ra -q"
 testpaths = ["tests"]
 
+[tool.dephell.main]
+from = {format = "poetry", path = "pyproject.toml"}
+to = {format = "setuppy", path = "setup.py"}
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
