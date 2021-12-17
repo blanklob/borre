@@ -60,11 +60,11 @@ def analyse_standard_score(dice_value_occurrence_list, player):
 
 
 def analyse_score(dice_value_occurrence_list, player):
-
+    player["RoundScore"] += player["turnScore"]
     print("votre score sur ce lancé est de : " + str(player['turnScore']))
     print(f"votre score sur ce round est de  {player['RoundScore']}")
     print('')
-    player["RoundScore"] += player["turnScore"]
+
     if player['turnScore'] + player['score'] > player['score']:
         for n in dice_value_occurrence_list:
             player['diceToThrow'] += n
@@ -92,10 +92,8 @@ def analyse_score(dice_value_occurrence_list, player):
 def round(players):
     for player in players:
         print(" C'est au tour de " + str(player['username'] + " avec un score de " + str(player['score'])))
-
         print('')
-        player["turnScore"] += 0
-        player["RoundScore"] += 0
+        player["RoundScore"] = 0
         player['endTurn'] = False
         player['diceToThrow'] = params.THROW_DICE_COUNTER
         while not player['endTurn']:
@@ -103,6 +101,7 @@ def round(players):
             dice_value_occurrence_list = analyse_bonus_score(dice_value_occurrence_list, player)
             dice_value_occurrence_list = analyse_standard_score(dice_value_occurrence_list, player)
             analyse_score(dice_value_occurrence_list, player)
+
             if player['score'] >= params.DEFAULT_TARGET_SCORE:
                 params.SOMEONE_WIN = True
                 print('the winner is ' + str(player['username'] + " avec un score de " + str(player['score'])))
