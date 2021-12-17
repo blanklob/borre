@@ -6,10 +6,10 @@ def test_dice_sides():
     """
     Tests the number of sides
     """
-    num_of_sides = 9
-    dice = Dice(num_of_sides)
+    test_number_of_sides = random.randint(0, 100)
+    dice = Dice(test_number_of_sides)
 
-    assert dice.sides == num_of_sides
+    assert dice.sides == test_number_of_sides
 
 
 def test_dice_roll():
