@@ -16,12 +16,11 @@ class Dice:
             if sides < 1:
                 raise ValueError
         except ValueError:
-            logging.exception("Sorry, I didn't understand that.")
+            logging.exception("Sorry, the Dice must have at least one side.")
             return None
 
         self.sides = sides
         self.seed = seed
-
 
     def __repr__(self) -> str:
         return f"Dice with {self.sides} sides"
@@ -35,6 +34,7 @@ class Dice:
             return random_dice.randint(1, self.sides)
 
         return random.randint(1, self.sides)
+
 
 class Set:
     def __init__(self, number_of_dices: int = params.DEFAULT_DICES_NB) -> None:

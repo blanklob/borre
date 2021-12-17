@@ -1,6 +1,7 @@
 import random
 import parametres as params
 
+
 def create_player():
     PLAYER = []
     player_username = ""
@@ -8,11 +9,13 @@ def create_player():
     print(how_many_player)
     for index in range(how_many_player):
         player_username = str(input("votre nom"))
-        PLAYER.append({
-            'username': player_username,
-            'score': 0,
-            'id': index,
-        })
+        PLAYER.append(
+            {
+                "username": player_username,
+                "score": 0,
+                "id": index,
+            }
+        )
     return PLAYER
 
 
@@ -26,39 +29,39 @@ def roll_dice_set(how_many_dice):
 
     return dice_value_list
 
+
 def analyse_bonus_score(dice_value_list, player):
-   print(dice_value_list)
+    print(dice_value_list)
 
-   bonus_score = 0
-   for index, dice_value in enumerate(dice_value_list):
-       nb_of_bonus = dice_value // params.TRIGGER_OCCURRENCE_FOR_BONUS
-       if nb_of_bonus > 0:
-           if index == 0:
-               bonus_mulitplier = params.BONUS_VALUE_FOR_ACE_BONUS
-           else:
-               bonus_mulitplier = params.BONUS_VALUE_FOR_NORMAL_BONUS
+    bonus_score = 0
+    for index, dice_value in enumerate(dice_value_list):
+        nb_of_bonus = dice_value // params.TRIGGER_OCCURRENCE_FOR_BONUS
+        if nb_of_bonus > 0:
+            if index == 0:
+                bonus_mulitplier = params.BONUS_VALUE_FOR_ACE_BONUS
+            else:
+                bonus_mulitplier = params.BONUS_VALUE_FOR_NORMAL_BONUS
 
-           bonus_score += nb_of_bonus * bonus_mulitplier * (index + 1)
-           dice_value_list[index] %= params.TRIGGER_OCCURRENCE_FOR_BONUS
+            bonus_score += nb_of_bonus * bonus_mulitplier * (index + 1)
+            dice_value_list[index] %= params.TRIGGER_OCCURRENCE_FOR_BONUS
 
-   print(bonus_score)
-   player["score"] += bonus_score
+    print(bonus_score)
+    player["score"] += bonus_score
 
-   return dice_value_list
+    return dice_value_list
 
 
 def analyse_standard_score(dice_value_list, player):
     standard_score = 0
-    for scoring_value, scoring_multiplier in zip(params.LIST_SCORING_DICE_VALUE, params.LIST_SCORING_MULTIPLIER):
+    for scoring_value, scoring_multiplier in zip(
+        params.LIST_SCORING_DICE_VALUE, params.LIST_SCORING_MULTIPLIER
+    ):
         standard_score += dice_value_list[scoring_value - 1] * scoring_multiplier
         dice_value_list[scoring_value - 1] = 0
 
     print(standard_score)
     player["score"] += standard_score
     return dice_value_list
-
-
-
 
 
 def analyse_score(dice_value_list, old_score, player):
@@ -81,7 +84,6 @@ def analyse_score(dice_value_list, old_score, player):
         params.STACK_BONUS = 0
         print("perdu sale chien")
 
-
     print("il te reste " + str(params.THROW_DICE_COUNTER) + " dés a lancer")
     if params.THROW_DICE_COUNTER > 0:
         test = input("voulez vous relancez ?")
@@ -89,7 +91,6 @@ def analyse_score(dice_value_list, old_score, player):
             pass
         else:
             print("votre score pour ce tour est de " + str(params.STACK_BONUS))
-
 
 
 def game():
@@ -102,11 +103,10 @@ def game():
         analyse_score(dice_value_list, old_score, player)
 
         # analyse_bonus_score(roll_dice_set(params.THROW_DICE_COUNTER, player), player)
-        #analyse_standard_score()
+        # analyse_standard_score()
 
     print("-----------------")
     print(players)
-
 
 
 if __name__ == "__main__":

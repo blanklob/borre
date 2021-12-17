@@ -21,4 +21,3 @@ def get_player_input(prompt: str) -> str:
             break
 
     return response.lower()
-
