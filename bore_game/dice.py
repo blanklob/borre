@@ -1,4 +1,4 @@
-import random
+import random, logging
 from typing import List
 
 import bore_game.parametres as params
@@ -7,8 +7,21 @@ from bore_game.utils import get_player_input
 
 
 class Dice:
-    def __init__(self, sides: int = params.NB_DICE_SIDE) -> None:
+    def __init__(
+        self,
+        sides: int = params.NB_DICE_SIDE,
+        seed: random.Random = None
+    ) -> None:
+        try:
+            if sides < 1:
+                raise ValueError
+        except ValueError:
+            logging.exception("Sorry, I didn't understand that.")
+            return None
+
         self.sides = sides
+        self.seed = seed
+
 
     def __repr__(self) -> str:
         return f"Dice with {self.sides} sides"
@@ -17,8 +30,11 @@ class Dice:
         """
         Perform a roll, and return the value of the roll
         """
-        return random.randint(1, self.sides)
+        if self.seed is not None:
+            random_dice = random.Random(self.seed)
+            return random_dice.randint(1, self.sides)
 
+        return random.randint(1, self.sides)
 
 class Set:
     def __init__(self, number_of_dices: int = params.DEFAULT_DICES_NB) -> None:
@@ -131,7 +147,7 @@ class Party:
 
         if self.number_of_dices_left == 0:
             player_input = get_player_input(
-                "Do you want to reset the game ? (Yes or Non)"
+                "Do you want to reset the party ? (Yes or Non)"
             )
 
             if player_input == "non":

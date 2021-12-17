@@ -1,4 +1,5 @@
 from typing import List
+import logging
 
 import bore_game.parametres as params
 from bore_game.dice import Party
@@ -34,7 +35,7 @@ class Bore:
         """
         while self.is_running:
             for player in self.players:
-                print(f"Player {player.username} will play...")
+                logging.warning(f"Player {player.username} will play...")
                 party = Party(player)
                 party.run()
 

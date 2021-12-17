@@ -1,6 +1,6 @@
 """Bore is a dead simple Dice game"""
 
-__version__ = "0.1.2-alpha"
+__version__ = "0.1.2"
 
 
 from . import parametres as parametres
