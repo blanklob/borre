@@ -30,3 +30,5 @@ THROW_DICE_COUNTER = 6
 
 # Imperative constant
 STACK_BONUS = 0
+
+SOMEONE_WIN = False

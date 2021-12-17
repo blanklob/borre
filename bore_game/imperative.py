@@ -123,7 +123,5 @@ def game():
         print('------------------------------------------')
         round(players)
 
-
-
 if __name__ == "__main__":
-    game()
+  game()
