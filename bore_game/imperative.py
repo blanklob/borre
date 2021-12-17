@@ -107,7 +107,6 @@ def round(players):
         player["endTurn"] = False
         player["diceToThrow"] = params.THROW_DICE_COUNTER
 
-
         while not player["endTurn"]:
             dice_value_occurrence_list = roll_dice_set(player)
             dice_value_occurrence_list = analyse_bonus_score(
@@ -129,7 +128,7 @@ def round(players):
 
 
 def sort_players(players):
-    sorted_players = dict(sorted(players.items(), key=lambda item: item['score']))
+    sorted_players = dict(sorted(players.items(), key=lambda item: item["score"]))
     return sorted_players
 
 
