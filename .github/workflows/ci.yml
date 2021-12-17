@@ -18,11 +18,15 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install Poetry
       uses: snok/install-poetry@v1
+
     - name: Install dependencies
       run: poetry install
+
     - name: Test with tox
       run: bash scripts/test.sh
+
     - name: Lint with mypy
       run: bash scripts/lint.sh
