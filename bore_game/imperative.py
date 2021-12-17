@@ -34,7 +34,6 @@ def roll_dice_set(player):
 
 def analyse_bonus_score(dice_value_occurrence_list, player):
     print(dice_value_occurrence_list)
-
     bonus_score = 0
     for index, dice_value in enumerate(dice_value_occurrence_list):
         nb_of_bonus = dice_value // params.TRIGGER_OCCURRENCE_FOR_BONUS
@@ -51,10 +50,7 @@ def analyse_bonus_score(dice_value_occurrence_list, player):
     player["turnScore"] += bonus_score
     # print('analyse_bonus_score END ---------------------------------')
     return dice_value_occurrence_list
-
-
-   player["turnScore"] += bonus_score
-   return dice_value_occurrence_list
+  
 
 def analyse_standard_score(dice_value_occurrence_list, player):
     standard_score = 0
@@ -76,10 +72,11 @@ def analyse_standard_score(dice_value_occurrence_list, player):
 
 
 def analyse_score(dice_value_occurrence_list, player):
+    player["RoundScore"] += player["turnScore"]
     print("votre score sur ce lancé est de : " + str(player['turnScore']))
     print(f"votre score sur ce round est de  {player['RoundScore']}")
     print('')
-    player["RoundScore"] += player["turnScore"]
+
     if player['turnScore'] + player['score'] > player['score']:
         for n in dice_value_occurrence_list:
             player["diceToThrow"] += n
@@ -106,10 +103,8 @@ def analyse_score(dice_value_occurrence_list, player):
 def round(players):
     for player in players:
         print(" C'est au tour de " + str(player['username'] + " avec un score de " + str(player['score'])))
-
         print('')
-        player["turnScore"] += 0
-        player["RoundScore"] += 0
+        player["RoundScore"] = 0
         player['endTurn'] = False
         player['diceToThrow'] = params.THROW_DICE_COUNTER
         while not player['endTurn']:
@@ -121,6 +116,7 @@ def round(players):
                 dice_value_occurrence_list, player
             )
             analyse_score(dice_value_occurrence_list, player)
+
             if player["score"] >= params.DEFAULT_TARGET_SCORE:
                 params.SOMEONE_WIN = True
                 print(
