@@ -5,4 +5,4 @@ def test_bore_version():
     """
     Tests the version number
     """
-    assert bore_game.__version__ == "0.1.0"
+    assert bore_game.__version__ == "0.1.2-alpha"
