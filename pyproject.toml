@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bore-game"
-version = "0.1.2-alpha"
+version = "0.1.2"
 description = "Bore is a dead simple Dice game"
 authors = ["Youness Id bakkasse <std.youness@gmail.com>"]
 license = "MIT"
