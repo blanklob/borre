@@ -1,7 +1,7 @@
 import bore_game.parametres as params
 from bore_game.player import Player
 from bore_game.dice import Party
-
+from typing import List
 
 class Bore:
     def __init__(
@@ -17,7 +17,7 @@ class Bore:
         for _ in range(self.num_of_players):
             self.players.append(Player(username=str(_)))
 
-    def score(self) -> list[Player]:
+    def score(self) -> List[Player]:
         """
         Check each players global game score
         """
