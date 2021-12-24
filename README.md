@@ -1,4 +1,4 @@
-## Bore
+## Borre
 
 Bore is a dead simple Dice 🎲 game made using Python. (School project 📖)
 

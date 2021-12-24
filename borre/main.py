@@ -1,12 +1,12 @@
 from typing import List
 import logging
 
-import bore_game.parametres as params
-from bore_game.party import Party
-from bore_game.player import Player
+import borre.parametres as params
+from borre.party import Party
+from borre.player import Player
 
 
-class Bore:
+class Borre:
     def __init__(
         self,
         num_of_players: int = params.DEFAULT_PLAYERS_NUMBER,

@@ -1,19 +1,20 @@
 [tool.poetry]
-name = "bore-game"
+name = "borre"
 version = "0.1.2"
-description = "Bore is a dead simple Dice game"
-authors = ["Youness Id bakkasse <std.youness@gmail.com>"]
+description = "Borre is a dead simple Dice game maker"
+authors = ["Youness Id bakkasse <hi@younessidbakkasse.com>"]
 license = "MIT"
 readme = "README.md"
-documentation = "https://github.com/younessidbakkasse/bore"
+documentation = "https://github.com/younessidbakkasse/borre"
 keywords = [
   "dice game",
   "game",
-  "dice"
+  "dice",
+  "game maker",
 ]
 
 [tool.poetry.scripts]
-game = "bore_game.main:game"
+game = "borre.main:game"
 example = "examples.main:main"
 
 [tool.poetry.dependencies]
@@ -26,8 +27,8 @@ mypy = "^0.920"
 tox = "^3.24.4"
 
 [tool.poetry.urls]
-bug-tracker = "https://github.com/younessidbakkasse/bore/issues"
-home-page = "https://github.com/younessidbakkasse/bore"
+bug-tracker = "https://github.com/younessidbakkasse/borre/issues"
+home-page = "https://github.com/younessidbakkasse/borre"
 
 [tool.pytest.ini_options]
 minversion = "6.0"

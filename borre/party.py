@@ -1,7 +1,7 @@
-import bore_game.parametres as params
-from bore_game.player import Player
-from bore_game.dice import Set
-from bore_game.utils import get_player_input
+import borre.parametres as params
+from borre.player import Player
+from borre.dice import Set
+from borre.utils import get_player_input
 
 
 class Party:

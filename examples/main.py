@@ -1,13 +1,12 @@
-import logging
-import bore_game
-
-
-logger = logging.getLogger(__name__)
+import borre
 
 
 def main() -> None:
-    game = bore_game.Bore()
-    game.lunch()
+    dice = borre.Dice(
+        sides=6
+    )
+
+    print(dice.rolls())
 
 
 if __name__ == "__main__":

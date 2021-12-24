@@ -2,4 +2,4 @@
 
 set -x
 
-poetry run black bore_game tests examples
+poetry run black borre tests examples

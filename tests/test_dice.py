@@ -1,25 +1,31 @@
-from bore_game.dice import Dice
+import borre
 import random
+
 
 
 def test_dice_sides():
     """
-    Tests the number of sides
+    It should create a dice with 100 sides.
     """
-    test_number_of_sides = random.randint(0, 100)
-    dice = Dice(test_number_of_sides)
+    test_number_sides = 100
 
-    assert dice.sides == test_number_of_sides
+    dice = borre.Dice(
+        sides=test_number_sides
+    )
+
+    assert dice.sides == test_number_sides
 
 
-def test_dice_roll():
+def test_dice_sides_exception():
     """
-    Tests the generated dice combination
+    It should return an error since we're trying
+    to create a dice without sides.
     """
-    test_dice_seed = random.randint(0, 100)
-    test_dice_sides = random.randint(1, 100)
+    test_number_sides = 0
 
-    random_dice_set = random.Random(test_dice_seed)
-    dice = Dice(test_dice_sides, test_dice_seed)
+    dice = borre.Dice(
+        sides=test_number_sides
+    )
 
-    assert random_dice_set.randint(1, test_dice_sides) == dice.roll()
+    assert dice is None
+
