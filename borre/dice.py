@@ -15,15 +15,11 @@ class Dice:
         sides: int = params.DEFAULT_DICE_SIDES_NUMBER,
     ) -> None:
 
-        try:
-            if not sides:
-                raise ValueError
-        except ValueError:
-            logging.error("Sorry, the Dice must have at least one side.")
-            return None
+        if not sides:
+            raise ValueError("Sorry, the Dice must have at least one side.")
 
         self.sides = sides
-        self.counter += 1
+        Dice.counter += 1
 
 
     def __repr__(self) -> str:
