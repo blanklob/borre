@@ -8,7 +8,7 @@ Made by a Youness Id bakkasse, David, Alexandre for a School project
 at Hetic.
 """
 
-__version__ = "0.2.0"
+__version__ = "0.1.3"
 
 
 from .dice import Dice as Dice

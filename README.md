@@ -2,8 +2,8 @@
 
 > Borre is a dead simple Farkle 🎲 dice game implementation and game maker made using Python as a School project.
 
+[![PyPi version](https://badgen.net/pypi/v/borre/)](https://pypi.com/project/borre)
 [![Tests][tests-badge]][tests-url]
-[![Code style: black][black-badge]][black-url]
 
 Game rules are simple, you usually have five dices with six sides, you roll the set of dices, and check if you score bonus or regular standard points.
 

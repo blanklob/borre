@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "borre"
-version = "0.1.2"
+version = "0.1.3"
 description = "Borre is a dead simple Dice game maker"
 authors = ["Youness Id bakkasse <hi@younessidbakkasse.com>"]
 license = "MIT"
@@ -8,21 +8,18 @@ readme = "README.md"
 documentation = "https://github.com/younessidbakkasse/borre"
 keywords = [
   "dice game",
-  "game",
-  "dice",
   "game maker",
+  "Farkle",
 ]
 
 [tool.poetry.scripts]
-game = "borre.main:game"
 example = "examples.main:main"
 
 [tool.poetry.dependencies]
-python = ">=3.6.2"
+python = ">=3.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
-black = "^21.12b0"
 mypy = "^0.920"
 tox = "^3.24.4"
 
