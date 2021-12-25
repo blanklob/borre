@@ -5,8 +5,8 @@ import borre.parametres as params
 
 class Dice:
     """
-    A dice have a certain number of sides and
-    random seed that you can specify to roll the dice.
+    A Dice has a certain number of sides and
+    methods that roll the dice a number of times.
     """
     counter = 0
 

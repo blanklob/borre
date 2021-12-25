@@ -1,48 +1,58 @@
-## Borre
+# Borre
 
-Bore is a dead simple Dice 🎲 game made using Python. (School project 📖)
+> Borre is a dead simple Farkle 🎲 dice game implementation and game maker made using Python as a School project.
 
-[![PyPI version](https://img.shields.io/pypi/v/bore-game.svg)](https://img.shields.io/pypi/v/bore-game)
-[![Tests](https://github.com/younessidbakkasse/bore/actions/workflows/ci.yml/badge.svg)](https://github.com/younessidbakkasse/bore/actions/workflows/ci.yml)
-[![Code Quality](https://github.com/younessidbakkasse/bore/actions/workflows/quality.yml/badge.svg?branch=main)](https://github.com/younessidbakkasse/bore/actions/workflows/quality.yml)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Tests][tests-badge]][tests-url]
+[![Code style: black][black-badge]][black-url]
+
+Game rules are simple, you usually have five dices with six sides, you roll the set of dices, and check if you score bonus or regular standard points.
 
 ## Requirements
 
 This package supports the following minimum versions:
 
-* Python >= 3.6.2
+* Python >= 3.6
 
-If you have Python installed, just skip to Usage, otherwise [install Python 3.6](https://www.python.org/downloads/release/python-360/)
+If you have Python installed, just skip to Usage, otherwise [install Python 3.6][python-url].
 
-> Dont forget to set the python PATH in your machine.
-> [→ Learn more about Paths](https://www.javatpoint.com/how-to-set-python-path).
-
-Earlier versions may still work, but we encourage people building new applications
+> Earlier versions may still work, but we encourage people building new applications
 to upgrade to the current stable.
 
 ## Usage
 
-After the installation, you will need to install the **bore-game** package localy, to do so use the commande below:
+First, you will need to install the **borre** package localy
 
 ```shell
-pip install bore-game
+pip install borre
 ```
 
-The main game example entrypoint is in the **main.py** file, run the command below to start the game.
+To quickly start, with a simple Dice
 
-```shell
-python examples/main.py
+```python
+import borre
+
+dice = borre.Dice()
+
+# Rolls the dice once
+print(dice.roll())
 ```
+
+> If you have any difficulties, you might as well check the examples in `examples` folder.
 
 ## Getting help
 
 If you have a question about the library, or are having difficulty using it,
-chat with the community in [GitHub Discussions](https://github.com/younessidbakkasse/bore/discussions)..
-
+chat with the community in [GitHub Discussions](/discussions)..
 
 ## Contributing
 
-Everyone is welcome to make this game batter feel free to submit your PR 😀.
+Everyone is welcome to make this package better feel free to submit your pull request/feature request.
 
+<!-- Markdown links & img dfn's -->
+[black-badge]: https://img.shields.io/badge/code%20style-black-000000.svg
+[black-url]: https://github.com/psf/black
+
+[tests-url]: https://github.com/younessidbakkasse/borre/actions/workflows/ci.yml
+[tests-badge]: https://github.com/younessidbakkasse/borre/actions/workflows/ci.yml/badge.svg
+
+[python-url]: https://www.python.org

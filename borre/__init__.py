@@ -1,5 +1,5 @@
 """
-Bore is a dead simple Farkle dice game implementation and game maker,
+Borre is a dead simple Farkle dice game implementation and game maker,
 game rules are simple, you usually have five dices with six
 sides, you roll the set of dices, and check if you score bonus
 or regular standard points.
