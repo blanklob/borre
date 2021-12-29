@@ -1,4 +1,4 @@
-import random, logging
+import random
 from typing import List, Union
 import borre.parametres as params
 
