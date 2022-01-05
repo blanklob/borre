@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "borre"
-version = "0.1.3"
+version = "0.1.4"
 description = "Borre is a dead simple Dice game maker"
 authors = ["Youness Id bakkasse <hi@younessidbakkasse.com>"]
 license = "MIT"
