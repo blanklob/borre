@@ -49,10 +49,7 @@ chat with the community in [GitHub Discussions](/discussions)..
 Everyone is welcome to make this package better feel free to submit your pull request/feature request.
 
 <!-- Markdown links & img dfn's -->
-[black-badge]: https://img.shields.io/badge/code%20style-black-000000.svg
-[black-url]: https://github.com/psf/black
-
-[tests-url]: https://github.com/younessidbakkasse/borre/actions/workflows/ci.yml
-[tests-badge]: https://github.com/younessidbakkasse/borre/actions/workflows/ci.yml/badge.svg
+[tests-url]: https://github.com/idbakkasse/borre/actions/workflows/ci.yml
+[tests-badge]: https://github.com/idbakkasse/borre/actions/workflows/ci.yml/badge.svg
 
 [python-url]: https://www.python.org
