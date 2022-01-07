@@ -16,12 +16,12 @@ class Player:
         is_moderator: bool = False
     ) -> None:
         """
+        Initialize the player and give it a username
         """
         self.id = Player.counter
         self.username = username
         self.score = 0
         self.nb_of_roll = 0
-        self.nb_of_turn = 0
         self.is_moderator = is_moderator
 
         Player.counter += 1
@@ -30,18 +30,19 @@ class Player:
     def play(
         self,
         dice: Dice,
-        number_of_rolls: int = params.DEFAULT_DICES_NUMBER
+        number_of_rolls: int = params.DEFAULT_DICES_NUMBER,
     ) -> List[int]:
         """
+        Rolls a dice a nb_of_roll number of times for the player
         """
-        dice = Dice(number_of_rolls)
-        self.nb_of_roll += number_of_rolls
-        return dice.rolls()
+        self.nb_of_roll += 1
+        return dice.rolls(number_of_rolls)
 
 
     def __repr__(self) -> str:
         """
+        Prints the player info when called using print
         """
-        return f"You are {self.username} and your score is {self.score} points"
+        return f"You are: {self.username} and your score: {self.score} points/n"
 
 

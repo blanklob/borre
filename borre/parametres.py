@@ -6,6 +6,6 @@ SCORING_MULTIPLIER = [100, 50]  # List of multiplier for standard score
 
 THRESHOLD_BONUS = 3  # Threshold of the triggering for bonus in term of occurrence of the same slide value
 STD_BONUS_MULTIPLIER = 100  # Standard multiplier for bonus
-ACE_BONUS_MULTIPLIER = 1000  # Special multiplier for aces bonus
+ACE_BONUS_MULTIPLIER = 1000  # Special multiplier for ace bonus
 
 DEFAULT_DICES_NUMBER = 5  # Number of dices by default in the set

@@ -14,7 +14,9 @@ class Dice:
         self,
         sides: int = params.DEFAULT_DICE_SIDES_NUMBER,
     ) -> None:
-
+        """
+        Initiliaze the Dice with a certain number of sides.
+        """
         if not sides:
             raise ValueError("Sorry, the Dice must have at least one side.")
 
