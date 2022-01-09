@@ -37,7 +37,7 @@ dice = borre.Dice()
 print(dice.roll())
 ```
 
-Or create a multipe players
+Or create a multiple players
 
 ```python
 import borre
@@ -46,10 +46,10 @@ bob = borre.Player("Bob")
 alice = borre.Player("Alice")
 
 # Bob plays with 6 Dices
-print(bob.play(borre.Dice(6)))
+bob.play(borre.Dice(), 6)
 
 # Alice plays with only 2 Dices
-print(alice.play(borre.Dice(2)))
+alice.play(borre.Dice(), 2)
 ```
 
 > If you have any difficulties, you might as well check the examples in `examples` folder.
