@@ -18,7 +18,7 @@ class Score:
         """
         Shows the score of the occurence list when called upon print
         """
-        return f"The occurrence {self.original_occurences} gives a global score of {self.global_score}"
+        return f"The occurrence {self.original_occurences} gives a global score of {self.global_score} points"
 
 
     @property

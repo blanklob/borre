@@ -1,7 +1,7 @@
 import borre
 
 
-def test_version_number():
+def test_version_number() -> None:
     """
     Tests borre version number.
     """

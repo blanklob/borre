@@ -1,7 +1,7 @@
 import borre
 
 
-def test_player_counter():
+def test_player_counter() -> None:
     """
     it should check if the global Players counter
     is working
@@ -15,7 +15,7 @@ def test_player_counter():
     assert borre.Player.counter == test_number_of_players
 
 
-def test_player_plays_tracker():
+def test_player_plays_tracker() -> None:
     """
     it should check if the how many times a player
     has played in a match
@@ -27,10 +27,10 @@ def test_player_plays_tracker():
     test_player_2_plays = 10
 
     for _ in range(test_player_1_plays):
-        test_player_1.play()
+        test_player_1.play(borre.Dice())
 
     for _ in range(test_player_2_plays):
-        test_player_2.play()
+        test_player_2.play(borre.Dice())
 
     assert test_player_1.nb_of_plays == test_player_1_plays
     assert test_player_2.nb_of_plays == test_player_2_plays
