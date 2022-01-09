@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "borre"
-version = "0.1.4"
-description = "Borre is a dead simple Dice game maker"
-authors = ["Youness Id bakkasse <hi@younessidbakkasse.com>"]
+version = "0.1.5"
+description = "Borre is a dead simple Frakle Dice game maker"
+authors = ["Youness Idbakkasse <youness@idbakkasse.com>"]
 license = "MIT"
 readme = "README.md"
-documentation = "https://github.com/younessidbakkasse/borre"
+documentation = "https://github.com/dbakkasse/borre"
 keywords = [
   "dice game",
   "game maker",
@@ -16,7 +16,7 @@ keywords = [
 example = "examples.main:main"
 
 [tool.poetry.dependencies]
-python = ">=3.6"
+python = ">=3.7"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
