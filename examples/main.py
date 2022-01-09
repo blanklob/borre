@@ -11,9 +11,10 @@ game = borre.Borre(
 
 # Runing the game
 def main() -> None:
-    occurence = game.players[0].play(borre.Dice())
-    occurence_score = borre.Score(occurence)
-    print(occurence, occurence_score.global_score)
+    occurences = game.players[0].play(borre.Dice())
+    occurence_score = borre.Score(occurences)
+    print(occurences, occurence_score.global_score, occurence_score.occurences)
+
 
 
 if __name__ == "__main__":

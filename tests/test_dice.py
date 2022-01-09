@@ -1,7 +1,5 @@
 import borre, pytest
-from borre.dice import Dice
 import random
-
 
 
 def test_dice_counter():
@@ -14,7 +12,7 @@ def test_dice_counter():
     for _ in range(test_number_of_dices):
         borre.Dice()
 
-    assert Dice.counter == test_number_of_dices
+    assert borre.Dice.counter == test_number_of_dices
 
 
 def test_dice_sides():

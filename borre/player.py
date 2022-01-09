@@ -21,7 +21,7 @@ class Player:
         self.id = Player.counter
         self.username = username
         self.score = 0
-        self.nb_of_roll = 0
+        self.nb_of_plays = 0
         self.is_moderator = is_moderator
 
         Player.counter += 1
@@ -33,9 +33,9 @@ class Player:
         number_of_rolls: int = params.DEFAULT_DICES_NUMBER,
     ) -> List[int]:
         """
-        Rolls a dice a nb_of_roll number of times for the player
+        Rolls a dice a number_of_rolls times and updated the plays tracker
         """
-        self.nb_of_roll += 1
+        self.nb_of_plays += 1
         return dice.rolls(number_of_rolls)
 
 
