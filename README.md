@@ -1,6 +1,6 @@
 # Borre
 
-> Borre is a dead simple Farkle 🎲 dice game implementation and game maker made using Python at it's glory.
+> Borre is a dead simple Farkle 🎲 dice game implementation and game maker made using Python at it's glory 🐍
 
 [![PyPi version][pypi-badge]][pypi-url]
 [![Tests][tests-badge]][tests-url]
